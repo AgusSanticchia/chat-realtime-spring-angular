@@ -6,15 +6,19 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
+import java.util.Random;
 
 @Controller
 public class ChatController {
-
+    private String[] colors = {"red", "green", "blue", "magenta", "purple", "orange"};
     @MessageMapping("/message")
     @SendTo("/chat/message")
     public Message receiveMessage(Message message) {
         message.setDate(new Date().getTime());
-        message.setText("Recibo por el broker: " + message.getText());
+        if (message.getType().equals("NEW_USER")) {
+            message.setColor(this.colors[new Random().nextInt(this.colors.length)]);
+            message.setText("New user: " + message.getUsername());
+        }
         return message;
     }
 }

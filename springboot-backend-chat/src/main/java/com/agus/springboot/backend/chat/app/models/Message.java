@@ -8,4 +8,7 @@ import lombok.*;
 public class Message {
     private String text;
     private Long date;
+    private String username;
+    private String type;
+    private String color;
 }
