@@ -17,6 +17,13 @@ export class ChatComponent implements OnInit{
   messages: Message[] = [];
   message: Message = new Message();
 
+  writing!: string;
+  clientId!: string;
+
+  constructor() {
+    this.clientId = 'id-' + new Date().getTime() + '-' + Math.random().toString(36).substring(2);
+  }
+
   ngOnInit(): void {
     this.client = new Stomp.Client({
       brokerURL: undefined,
@@ -38,6 +45,18 @@ export class ChatComponent implements OnInit{
         }
         this.messages.push(message);
       })
+
+      this.client.subscribe('/chat/writing', e => {
+        this.writing = e.body;
+        setTimeout(() => this.writing = '', 3000);
+      })
+
+      console.log('clientId' + this.clientId);
+      this.client.subscribe(`/chat/history/${this.clientId}`, e => {
+        const histories = JSON.parse(e.body) as Message[];
+        this.messages = histories;
+      })
+      this.client.publish({destination: '/app/history/', body: this.clientId});
 
       this.message.type = 'NEW_USER';
       this.client.publish({
@@ -71,4 +90,10 @@ export class ChatComponent implements OnInit{
     this.message.text = '';
   }
 
+  onWritingEvent(){
+    this.client.publish({
+      destination: '/app/writing',
+      body: this.message.username
+    });
+  }
 }
