@@ -1,26 +1,25 @@
 package com.agus.springboot.backend.chat.app.services;
 
-import org.springframework.stereotype.Service;
 import com.agus.springboot.backend.chat.app.models.Message;
 import com.agus.springboot.backend.chat.app.repositories.MessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class MessageServiceMongo implements MessageService{
-    private final MessageRepository repository;
+@Service("messageServiceMongo")
+public class MessageServiceMongo implements MessageService {
 
-    public MessageServiceMongo(MessageRepository repository) {
-        this.repository = repository;
+    @Autowired
+    private MessageRepository repository;
+
+    @Override
+    public Message save(Message message) {
+        return repository.save(message);
     }
 
     @Override
-    public List<Message> findAll() {
-        return repository.findFirst10ByOrderByDateAsc();
-    }
-
-    @Override
-    public void save(Message message) {
-        repository.save(message);
+    public List<Message> findLast10Messages() {
+        return repository.findTop10ByOrderByDateDesc();
     }
 }

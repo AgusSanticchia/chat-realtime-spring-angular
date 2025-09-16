@@ -1,64 +1,86 @@
-# 💬 Full Stack Real-Time Chat Application
+# Chat en Tiempo Real - Spring Boot + Angular
 
-A **real-time chat application** built with **Angular 19** (frontend) and **Spring Boot 3** (backend).  
-It leverages **WebSocket/STOMP** for instant messaging and **MongoDB** for persistence.  
-Designed with a **scalable modular architecture**, this project is perfect for learning:
+Este proyecto es una aplicación de chat en tiempo real que utiliza Spring Boot como backend y Angular como frontend.
 
-- ✅ Frontend-backend integration  
-- ✅ Real-time event handling  
-- ✅ Modern development best practices  
+## Requisitos Previos
 
----
+- Java 21 o superior
+- Node.js 18 o superior
+- MongoDB (instalado y ejecutándose en localhost:27017)
+- Maven 3.6 o superior
 
-## 🚀 Tech Stack
+## Instalación y Ejecución
 
-### Frontend
-- **Angular 19**
-- **RxJS** for reactive programming
-- **Angular Material / TailwindCSS** (for UI components & styling)
-- **WebSocket client** for real-time communication
+### Backend (Spring Boot)
 
-### Backend
-- **Spring Boot 3**
-- **Spring WebSocket + STOMP**
-- **Spring Data MongoDB**
-- **Spring Security (optional)** for authentication/authorization
-
-### Database
-- **MongoDB** for storing users, messages, and chat rooms
-
----
-
-## ⚙️ Features
-
-- 👥 **User authentication & session management**  
-- 💬 **1-to-1 and group chat support**  
-- ⚡ **Instant messaging with WebSockets/STOMP**  
-- 🕒 **Message history persistence with MongoDB**  
-- 🔔 **Real-time notifications**  
-- 📱 **Responsive design**  
-
----
-
-## 🔧 Installation & Setup
-
-### 1. Clone repository
+1. Navega al directorio del backend:
 ```bash
-git clone https://github.com/AgusSanticchia/chat-realtime-spring-angular.git
-cd chat-realtime-spring-angular
+cd springboot-backend-chat
 ```
 
-### 2. Run Backend (Spring Boot)
+2. Ejecuta la aplicación Spring Boot:
 ```bash
-cd backend
 ./mvnw spring-boot:run
 ```
-Runs at: http://localhost:8080
 
-### 3. Run Frontend (Angular)
+El backend estará disponible en: `http://localhost:8080`
+
+### Frontend (Angular)
+
+1. Navega al directorio del frontend:
 ```bash
-cd frontend
-npm install
-ng start
+cd angular-chat
 ```
-Runs at: http://localhost:4200
+
+2. Instala las dependencias:
+```bash
+npm install
+```
+
+3. Ejecuta la aplicación Angular:
+```bash
+npm start
+```
+
+El frontend estará disponible en: `http://localhost:4200`
+
+## Características
+
+- Chat en tiempo real usando WebSockets
+- Almacenamiento de mensajes en MongoDB
+- Interfaz de usuario moderna con Bootstrap
+- Notificaciones de "usuario escribiendo"
+- Historial de mensajes
+- Colores únicos para cada usuario
+
+## Estructura del Proyecto
+
+```
+chat-realtime-spring-angular/
+├── springboot-backend-chat/     # Backend Spring Boot
+│   ├── src/main/java/...        # Código Java
+│   └── src/main/resources/      # Configuración
+└── angular-chat/                # Frontend Angular
+    ├── src/app/                 # Código TypeScript
+    └── src/assets/              # Recursos estáticos
+```
+
+## Tecnologías Utilizadas
+
+### Backend
+- Spring Boot 3.5.4
+- Spring WebSocket
+- Spring Data MongoDB
+- Lombok
+
+### Frontend
+- Angular 19
+- Bootstrap 5
+- STOMP.js
+- SockJS
+
+## Solución de Problemas
+
+1. **Error de conexión a MongoDB**: Asegúrate de que MongoDB esté ejecutándose en localhost:27017
+2. **Error de CORS**: El backend ya está configurado para permitir conexiones desde localhost:4200
+3. **Error de WebSocket**: Verifica que ambos servicios estén ejecutándose en los puertos correctos

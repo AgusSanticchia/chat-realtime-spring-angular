@@ -47,6 +47,6 @@ public class ChatController {
 
     @MessageMapping("/history")
     public void getHistoryMessage(String clientId) {
-        template.convertAndSend("/chat/history/" + clientId, service.findAll());
+        template.convertAndSend("/chat/history/" + clientId, service.findLast10Messages());
     }
 }

@@ -7,6 +7,7 @@ import { Message } from '../models/message';
 
 @Component({
   selector: 'app-chat',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './chat.component.html'
 })
@@ -54,7 +55,7 @@ export class ChatComponent implements OnInit {
         this.messages = histories;
       });
 
-      this.client.publish({ destination: '/app/history/', body: this.clientId });
+      this.client.publish({ destination: '/app/history', body: this.clientId });
 
       this.message.type = 'NEW_USER';
       this.client.publish({
