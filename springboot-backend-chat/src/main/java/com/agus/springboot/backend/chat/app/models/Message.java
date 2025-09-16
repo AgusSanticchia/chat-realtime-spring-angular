@@ -2,12 +2,14 @@ package com.agus.springboot.backend.chat.app.models;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Document(collection = "messages")
 public class Message {
+
     @Id
     private  String id;
 
