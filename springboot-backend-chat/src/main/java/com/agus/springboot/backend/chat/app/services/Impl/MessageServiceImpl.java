@@ -1,4 +1,4 @@
-package com.agus.springboot.backend.chat.app.services;
+package com.agus.springboot.backend.chat.app.services.Impl;
 
 import java.util.ArrayList;
 import java.util.List;

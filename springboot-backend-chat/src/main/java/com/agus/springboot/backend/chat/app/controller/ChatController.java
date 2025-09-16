@@ -3,11 +3,11 @@ package com.agus.springboot.backend.chat.app.controller;
 import com.agus.springboot.backend.chat.app.models.Message;
 import com.agus.springboot.backend.chat.app.services.MessageService;
 
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
@@ -22,7 +22,7 @@ public class ChatController {
     @Autowired
     private SimpMessagingTemplate template;
 
-    public ChatController(MessageService service) {
+    public ChatController(@Qualifier("messageServiceMongo") MessageService service) {
         this.service = service;
     }
 
